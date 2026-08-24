@@ -521,6 +521,7 @@ Litsenziya hali tanlanmagan. Kodni ochiq qo'ymoqchi bo'lsangiz `LICENSE` fayli
 qo'shing — aks holda u standart bo'yicha "barcha huquqlar himoyalangan" holatida qoladi.
 
 <br>
+<img width="100%" height="100%" alt="Image" src="https://github.com/user-attachments/assets/c5950f1d-ceaf-43a1-9eac-a46a4cfe24b6" />
 
 <div align="center">
 
