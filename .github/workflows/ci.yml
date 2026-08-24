@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+    paths-ignore: ["**/*.md"]
+  pull_request:
+    branches: ["**"]
+    paths-ignore: ["**/*.md"]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  rust:
+    name: Rust tekshiruvi
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Tizim kutubxonalari
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libwebkit2gtk-4.1-dev \
+            libgtk-3-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev \
+            libxdo-dev \
+            libssl-dev \
+            build-essential
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+      - name: Formatlash
+        run: cargo fmt --manifest-path src-tauri/Cargo.toml --all -- --check
+      - name: Clippy
+        run: cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+      - name: Kompilyatsiya
+        run: cargo check --manifest-path src-tauri/Cargo.toml --all-targets
+  frontend:
+    name: Frontend tekshiruvi
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+      - name: JS sintaksisi
+        run: |
+          fail=0
+          while IFS= read -r f; do
+            node --check "$f" || { echo "::error file=$f::sintaksis xatosi"; fail=1; }
+          done < <(find src -name '*.js')
+          exit $fail
+      - name: Import yo'llari mavjudmi
+        run: |
+          python3 - <<'PY'
+          import re, pathlib, sys
+          root = pathlib.Path("src")
+          bad = []
+          for f in root.rglob("*.js"):
+              for m in re.finditer(r'(?:from|import)\s*\(?\s*["\'](\.[^"\']+)["\']', f.read_text()):
+                  if not (f.parent / m.group(1)).resolve().exists():
+                      bad.append(f"{f}: {m.group(1)}")
+          html = (root / "index.html").read_text()
+          for ref in re.findall(r'(?:href|src)="\./([^"]+)"', html):
+              if not (root / ref).exists():
+                  bad.append(f"index.html: {ref}")
+          for b in bad:
+              print(f"::error::havola topilmadi — {b}")
+          sys.exit(1 if bad else 0)
+          PY
+      - name: CSS muvozanati
+        run: |
+          python3 - <<'PY'
+          import pathlib, sys
+          bad = []
+          for f in pathlib.Path("src/styles").glob("*.css"):
+              s = f.read_text()
+              if s.count("{") != s.count("}"):
+                  bad.append(f.name)
+          for b in bad:
+              print(f"::error file=src/styles/{b}::qavslar muvozanatda emas")
+          sys.exit(1 if bad else 0)
+          PY

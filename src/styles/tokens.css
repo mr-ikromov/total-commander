@@ -1,0 +1,105 @@
+:root {
+
+  --bg-app: #f4f5f9;
+  --bg-chrome: #e9eaf2;
+  --bg-panel: #ffffff;
+  --bg-panel-alt: #f7f8fc;
+  --bg-header: #eceef6;
+  --bg-elev: #ffffff;
+  --bg-hover: #eef0fa;
+  --bg-active: #e3e6f6;
+
+  --fg: #1b1d26;
+  --fg-dim: #5b6072;
+  --fg-faint: #878da1;
+
+  --line: #d7dae8;
+  --line-soft: #e5e7f1;
+  --line-strong: #bfc4da;
+
+  --accent: #5a5ce0;
+  --accent-soft: #e6e6fb;
+  --accent-fg: #ffffff;
+  --dir: #6b74e8;
+  --danger: #d93a4a;
+  --warn: #d98324;
+  --ok: #1f9d55;
+
+  --sel-bg: #fde8ea;
+  --sel-fg: #d93a4a;
+  --cursor-bg: #dfe2f7;
+  --cursor-line: #5a5ce0;
+
+  --row-h: 26px;
+  --header-h: 32px;
+  --title-h: 44px;
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
+
+  --font-ui: "Segoe UI", Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --fs: 13px;
+  --fs-sm: 11.5px;
+  --shadow-2: 0 8px 30px rgb(16 18 32 / 18%), 0 2px 8px rgb(16 18 32 / 10%);
+
+  --speed: 120ms;
+}
+
+:root[data-theme="dark"] {
+  --bg-app: #0d0e14;
+  --bg-chrome: #12131c;
+  --bg-panel: #14151f;
+  --bg-panel-alt: #171825;
+  --bg-header: #1a1b28;
+  --bg-elev: #191a26;
+  --bg-hover: #1f2130;
+  --bg-active: #262940;
+
+  --fg: #e6e8f2;
+  --fg-dim: #9aa0b8;
+  --fg-faint: #6d7391;
+
+  --line: #23253a;
+  --line-soft: #1c1e2c;
+  --line-strong: #333653;
+
+  --accent: #8b8cf5;
+  --accent-soft: #23244a;
+  --accent-fg: #0d0e14;
+  --dir: #9ba2f7;
+  --danger: #ff6b7a;
+  --warn: #f0a350;
+  --ok: #4ade80;
+
+  --sel-bg: #2a1c26;
+  --sel-fg: #ff7a88;
+  --cursor-bg: #262a45;
+  --cursor-line: #8b8cf5;
+  --shadow-2: 0 12px 40px rgb(0 0 0 / 60%), 0 2px 10px rgb(0 0 0 / 40%);
+}
+
+:root[data-theme="midnight"] {
+  --bg-app: #060810;
+  --bg-chrome: #0a0d18;
+  --bg-panel: #0b0e1a;
+  --bg-panel-alt: #0e1220;
+  --bg-header: #101527;
+  --bg-elev: #101426;
+  --bg-hover: #161c33;
+  --bg-active: #1c2445;
+  --fg: #dbe4ff;
+  --fg-dim: #8b96bd;
+  --fg-faint: #5d6890;
+  --line: #182040;
+  --line-soft: #121a34;
+  --line-strong: #24305c;
+  --accent: #4dabf7;
+  --accent-soft: #10243d;
+  --dir: #74c0fc;
+  --danger: #ff6b7a;
+  --sel-bg: #241722;
+  --sel-fg: #ff8a95;
+  --cursor-bg: #1a2246;
+  --cursor-line: #4dabf7;
+}

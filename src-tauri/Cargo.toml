@@ -1,0 +1,46 @@
+[package]
+name = "total-commander"
+version = "1.0.0"
+description = "Total Commander — professional dual-pane file manager"
+authors = ["Total Commander Team"]
+edition = "2021"
+rust-version = "1.77.2"
+
+[lib]
+name = "total_commander_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["protocol-asset", "tray-icon", "image-png"] }
+tauri-plugin-clipboard-manager = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sysinfo = "0.33"
+walkdir = "2"
+regex = "1"
+zip = { version = "2", default-features = false, features = ["deflate", "time"] }
+tar = "0.4"
+flate2 = "1"
+sha2 = "0.10"
+md-5 = "0.10"
+crc32fast = "1"
+chrono = "0.4"
+trash = "5"
+encoding_rs = "0.8"
+memchr = "2"
+open = "5"
+dunce = "1"
+parking_lot = "0.12"
+uuid = { version = "1", features = ["v4"] }
+
+
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

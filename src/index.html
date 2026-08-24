@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <meta name="color-scheme" content="dark light"/>
+    <title>Total Commander</title>
+    <link rel="stylesheet" href="./styles/tokens.css"/>
+    <link rel="stylesheet" href="./styles/base.css"/>
+    <link rel="stylesheet" href="./styles/titlebar.css"/>
+    <link rel="stylesheet" href="./styles/panel.css"/>
+    <link rel="stylesheet" href="./styles/dialog.css"/>
+    <link rel="stylesheet" href="./styles/viewer.css"/>
+    <link rel="stylesheet" href="./styles/responsive.css"/>
+</head>
+<body oncontextmenu="return false;">
+<div id="app" class="app" data-layout="dual">
+    <header class="titlebar" data-tauri-drag-region>
+        <div class="titlebar__left" data-tauri-drag-region>
+            <span class="titlebar__icon" aria-hidden="true"></span>
+            <span class="titlebar__title" data-tauri-drag-region style="font-weight: bold;">total commander</span>
+        </div>
+        <nav class="titlebar__actions" id="header-actions" aria-label="Buyruqlar"></nav>
+        <div class="titlebar__controls">
+            <button class="wbtn" data-win="minimize" title="Kichraytirish" aria-label="Kichraytirish">
+                <svg viewBox="0 0 12 12">
+                    <path d="M2 6h8"/>
+                </svg>
+            </button>
+            <button class="wbtn" data-win="maximize" title="Kattalashtirish" aria-label="Kattalashtirish">
+                <svg viewBox="0 0 12 12">
+                    <rect x="2.5" y="2.5" width="7" height="7" rx="1"/>
+                </svg>
+            </button>
+            <button class="wbtn wbtn--close" data-win="close" title="Yopish" aria-label="Yopish">
+                <svg viewBox="0 0 12 12">
+                    <path d="M3 3l6 6M9 3l-6 6"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <main class="workspace" id="workspace">
+        <section class="pane" id="pane-left" data-side="left"></section>
+        <div class="splitter" id="splitter" role="separator" aria-orientation="vertical" tabindex="0" aria-label="Panel o'lchamini o'zgartirish"></div>
+        <section class="pane" id="pane-right" data-side="right"></section>
+    </main>
+    <div class="resize-grips" aria-hidden="true">
+        <span data-resize="North"></span><span data-resize="South"></span>
+        <span data-resize="West"></span><span data-resize="East"></span>
+        <span data-resize="NorthWest"></span><span data-resize="NorthEast"></span>
+        <span data-resize="SouthWest"></span><span data-resize="SouthEast"></span>
+    </div>
+</div>
+<div id="overlay-root" class="overlay-root"></div>
+<div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
